@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>评论留言</title>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<ul th:each="comment:${commentList}">
+    <li>
+        <div th:if="${comment.parentid} eq 0">
+            <p><span th:text="${comment.nickname}" style="color: red;font-size: 40px"></span> <span
+                    th:text="${comment.createdatetime}"></span></p>
+            <p th:text="${comment.content}"></p>
+        </div>
+        <ul th:if="${comment.parentid} eq 1">
+            <li>
+                <div>
+                    <p><span th:text="${comment.nickname}" style="color: red;font-size: 30px"></span> <span
+                            th:text="${comment.createdatetime}"></span></p>
+                    <p th:text="${comment.content}"></p>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
